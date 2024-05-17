@@ -212,7 +212,8 @@ done_list:
 	for (m = 0; m < limit; m++) {
 
 		if (a->info && a->info->vh_listen_sockfd)
-			sockfd = dup((int)a->info->vh_listen_sockfd);
+            sockfd = socket(a->af,(int)a->info->vh_listen_sockfd , 0);
+			// sockfd = dup((int)a->info->vh_listen_sockfd);
 		else
 			sockfd = lws_fi(&a->vhost->fic, "listenskt") ?
 					LWS_SOCK_INVALID :
