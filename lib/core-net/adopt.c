@@ -489,6 +489,7 @@ lws_adopt_descriptor_vhost(struct lws_vhost *vh, lws_adoption_type type,
 	info.fd = fd;
 	info.vh_prot_name = vh_prot_name;
 	info.parent = parent;
+    info.fi_wsi_name  = "NULL";
 
 	return lws_adopt_descriptor_vhost_via_info(&info);
 }
