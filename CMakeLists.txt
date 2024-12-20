@@ -165,9 +165,9 @@ option(LWS_WITH_SYS_STATE "lws_system state support" ON)
 option(LWS_WITH_SYS_SMD "Lws System Message Distribution" ON)
 option(LWS_WITH_SYS_FAULT_INJECTION "Enable fault injection support" OFF)
 option(LWS_WITH_SYS_METRICS "Lws Metrics API" OFF)
-option(LWS_WITH_UPNG "Enable stateful PNG stream decoder" ON)
+option(LWS_WITH_UPNG "Enable stateful PNG stream decoder" OFF)
 option(LWS_WITH_GZINFLATE "Enable internal minimal gzip inflator" ON)
-option(LWS_WITH_JPEG "Enable stateful JPEG stream decoder" ON)
+option(LWS_WITH_JPEG "Enable stateful JPEG stream decoder" OFF)
 option(LWS_WITH_DLO "Enable Display List Objects" ON)
 
 #
@@ -395,7 +395,7 @@ macro(exports_to_parent_scope)
 	if (LIB_LIST)
 		set(LIB_LIST ${LIB_LIST} PARENT_SCOPE)
 	endif()
-	get_property(_CURR DIRECTORY PROPERTY INCLUDE_DIRECTORIES) 
+	get_property(_CURR DIRECTORY PROPERTY INCLUDE_DIRECTORIES)
 	set(_CMAKE_INC_LIST ${_CURR} PARENT_SCOPE)
 	if (LWS_LIB_BUILD_INC_PATHS)
 		set(LWS_LIB_BUILD_INC_PATHS ${LWS_LIB_BUILD_INC_PATHS} PARENT_SCOPE)
@@ -587,7 +587,7 @@ if (NOT LWS_HAVE_inline)
 endif()
 
 # Put the libraries and binaries that get built into directories at the
-# top of the build tree rather than in hard-to-find leaf directories. 
+# top of the build tree rather than in hard-to-find leaf directories.
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
@@ -743,7 +743,7 @@ if (NOT CMAKE_REQUIRED_LIBRARIES)
 	set(CMAKE_REQUIRED_LIBRARIES "")
 endif()
 
-CHECK_C_SOURCE_COMPILES("#include <stdint.h> 
+CHECK_C_SOURCE_COMPILES("#include <stdint.h>
 	int main(void) {
 		intptr_t test = 1;
 		return 0;
@@ -1023,27 +1023,27 @@ if(WIN32 AND NOT CYGWIN)
 else()
   set(DEF_INSTALL_CMAKE_DIR lib${LIB_SUFFIX}/cmake/libwebsockets)
 endif()
-                
+
 configure_file(${PROJECT_SOURCE_DIR}/cmake/LwsCheckRequirements.cmake
 		${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LwsCheckRequirements.cmake
 		@ONLY)
-		
+
 configure_file(${PROJECT_SOURCE_DIR}/cmake/LwsCheckRequirements.cmake
 		${PROJECT_BINARY_DIR}/LwsCheckRequirements.cmake
-		@ONLY)  
+		@ONLY)
 
 # Generate version info for both build-tree and install-tree.
 configure_file(${PROJECT_SOURCE_DIR}/cmake/libwebsockets-config-version.cmake.in
-                ${PROJECT_BINARY_DIR}/libwebsockets-config-version.cmake 
+                ${PROJECT_BINARY_DIR}/libwebsockets-config-version.cmake
                 @ONLY)
 
 # Generate the config file for the build-tree.
-set(LWS__INCLUDE_DIRS 
+set(LWS__INCLUDE_DIRS
     "${PROJECT_SOURCE_DIR}/lib"
     "${PROJECT_BINARY_DIR}")
 set(LIBWEBSOCKETS_INCLUDE_DIRS ${LWS__INCLUDE_DIRS} CACHE PATH "Libwebsockets include directories")
 configure_file(${PROJECT_SOURCE_DIR}/cmake/libwebsockets-config.cmake.in
-                ${PROJECT_BINARY_DIR}/libwebsockets-config.cmake 
+                ${PROJECT_BINARY_DIR}/libwebsockets-config.cmake
                 @ONLY)
 set(LWS_INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH "Installation directory for CMake files")
 
@@ -1086,7 +1086,7 @@ endif()
 configure_file(
        "${PROJECT_SOURCE_DIR}/cmake/lws_config.h.in"
        "${PROJECT_BINARY_DIR}/lws_config.h")
-       
+
 add_custom_command(
 		OUTPUT ${PROJECT_BINARY_DIR}/include/lws_config.h
 			${PROJECT_BINARY_DIR}/include/libwebsockets
@@ -1137,8 +1137,8 @@ install(FILES ${PROJECT_BINARY_DIR}/include/libwebsockets.h ${PROJECT_BINARY_DIR
 # Generate the config file for the installation tree.
 get_filename_component(LWS_ABSOLUTE_INSTALL_CMAKE_DIR ${LWS_INSTALL_CMAKE_DIR} ABSOLUTE)
 get_filename_component(LWS_ABSOLUTE_INSTALL_INCLUDE_DIR ${LWS_INSTALL_INCLUDE_DIR} ABSOLUTE)
-file(RELATIVE_PATH 
-    REL_INCLUDE_DIR 
+file(RELATIVE_PATH
+    REL_INCLUDE_DIR
     "${LWS_ABSOLUTE_INSTALL_CMAKE_DIR}"
     "${LWS_ABSOLUTE_INSTALL_INCLUDE_DIR}") # Calculate the relative directory from the cmake dir.
 
