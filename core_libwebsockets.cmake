@@ -1,7 +1,6 @@
 include_guard(GLOBAL)
 message("${CMAKE_CURRENT_LIST_FILE} lib is included.")
 
-
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR} EXCLUDE_FROM_ALL)
 target_include_directories(websockets PRIVATE
     ${CORE_DIR}/Source/NXP/middleware/lwip/src/include
@@ -20,3 +19,10 @@ target_include_directories(websockets PRIVATE
     ${CORE_DIR}/Source/Bose/Logging
     ${CORE_DIR}/Source/NXP/rtos/freertos/freertos-kernel/portable/GCC/ARM_CM4F
     )
+
+target_include_directories(websockets PRIVATE
+   ${CORE_DIR}/Source/NXP/middleware/mbedtls/library/
+   ${CORE_DIR}/Source/NXP/middleware/mbedtls/include/
+   ${CORE_DIR}/Source/NXP/middleware/mbedtls/include/mbedtls
+   ${CORE_DIR}/Source/NXP/middleware/mbedtls/include/psa
+ )

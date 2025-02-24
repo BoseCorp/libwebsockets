@@ -198,8 +198,8 @@ option(LWS_CTEST_INTERNET_AVAILABLE "CTest will performs tests that need the Int
 #
 # TLS library options... all except mbedTLS are basically OpenSSL variants.
 #
-option(LWS_WITH_SSL "Include SSL support (defaults to OpenSSL or similar, mbedTLS if LWS_WITH_MBEDTLS is set)" OFF)
-option(LWS_WITH_MBEDTLS "Use mbedTLS (>=2.0) replacement for OpenSSL. When setting this, you also may need to specify LWS_MBEDTLS_LIBRARIES and LWS_MBEDTLS_INCLUDE_DIRS" OFF)
+option(LWS_WITH_SSL "Include SSL support (defaults to OpenSSL or similar, mbedTLS if LWS_WITH_MBEDTLS is set)" ON)
+option(LWS_WITH_MBEDTLS "Use mbedTLS (>=2.0) replacement for OpenSSL. When setting this, you also may need to specify LWS_MBEDTLS_LIBRARIES and LWS_MBEDTLS_INCLUDE_DIRS" ON)
 option(LWS_WITH_BORINGSSL "Use BoringSSL replacement for OpenSSL" OFF)
 option(LWS_WITH_CYASSL "Use CyaSSL replacement for OpenSSL. When setting this, you also need to specify LWS_CYASSL_LIBRARIES and LWS_CYASSL_INCLUDE_DIRS" OFF)
 option(LWS_WITH_WOLFSSL "Use wolfSSL replacement for OpenSSL. When setting this, you also may need to specify LWS_WOLFSSL_LIBRARIES and LWS_WOLFSSL_INCLUDE_DIRS" OFF)
@@ -292,7 +292,7 @@ endif()
 option(LWS_WITH_NO_LOGS "Disable all logging other than _err and _user from being compiled in" OFF)
 set(LWS_LOGGING_BITFIELD_SET 0 CACHE STRING "Bitfield describing which log levels to force included into the build")
 set(LWS_LOGGING_BITFIELD_CLEAR 0 CACHE STRING "Bitfield describing which log levels to force removed from the build")
-option(LWS_LOGS_TIMESTAMP "Timestamp at start of logs" ON)
+option(LWS_LOGS_TIMESTAMP "Timestamp at start of logs" OFF)
 option(LWS_LOG_TAG_LIFECYCLE "Log tagged object lifecycle as NOTICE" ON)
 option(LWS_AVOID_SIGPIPE_IGN "Android 7+ reportedly needs this" OFF)
 option(LWS_WITH_JOSE "JOSE JSON Web Signature / Encryption / Keys (RFC7515/6/) API" OFF)
